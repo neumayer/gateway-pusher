@@ -1,4 +1,4 @@
-#dependency-pusher
+#gateway-pusher
 
 Simple utility to push a metric for a successful run of a batch job to a prometheus pushgateway.
 
