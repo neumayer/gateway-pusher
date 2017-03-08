@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
@@ -27,11 +28,16 @@ func pushSuccessfulCompletion(pushGatewayURL string, jobName string, environment
 }
 
 func main() {
-	pushGatewayURL := flag.String("pushgateway-url", "http://localhost:9091", "Pushgateway to use")
+	pushGatewayURL := flag.String("pushgateway-url", "", "Pushgateway to use")
 	jobName := flag.String("job-name", "batch_job", "Name of the job to report on")
 	environment := flag.String("environment", "test", "Environment label to add")
 	datacenter := flag.String("datacenter", "eu-west-1", "Datacenter label to add")
 	flag.Parse()
+
+	if *pushGatewayURL == "" {
+		flag.PrintDefaults()
+		os.Exit(1)
+	}
 
 	err := pushSuccessfulCompletion(*pushGatewayURL, *jobName, *environment, *datacenter)
 	if err != nil {
