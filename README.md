@@ -12,5 +12,5 @@ Usage of ./gateway-pusher:
   -job-name string
     	Name of the job to report on (default "batch_job")
   -pushgateway-url string
-    	Pushgateway to use (default "http://localhost:9091")
+    	Pushgateway to use
 ```
