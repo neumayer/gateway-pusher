@@ -1,0 +1,5 @@
+ALERT MyBatchJobNotCompleted
+  IF min(time() - batch_job_last_completion_timestamp_seconds) > 10
+  FOR 20s
+  LABELS { severity="page" }
+  ANNOTATIONS { summary = "MyBatchJob has not completed successfully in over an hour" }
