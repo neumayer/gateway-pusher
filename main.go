@@ -20,7 +20,7 @@ func pushSuccessfulCompletion(pushGatewayURL string, jobName string, environment
 	})
 	completionTime.Set(float64(time.Now().Unix()))
 	return push.Collectors(
-		jobName,
+		jobName+"_"+environment+"_"+datacenter,
 		push.HostnameGroupingKey(),
 		pushGatewayURL,
 		completionTime,
